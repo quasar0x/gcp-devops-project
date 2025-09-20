@@ -1,7 +1,4 @@
-# Docker flask application
+# GCP DevOps Project – Docker Flask Application
 
-- This application is written in python.
-- It shall be deployed on GKE.
-- 
-
-
+- This application is written in Python.
+- It will be deployed on GKE.
