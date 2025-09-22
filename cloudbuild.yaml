@@ -1,17 +1,24 @@
 steps:
   - name: gcr.io/cloud-builders/docker
-    args: ["build", "-t", "gcr.io/gcp-devops-project/gcpdevops:latest", "."]
+    args:
+      [
+        "build",
+        "-t",
+        "gcr.io/kodekloud-gcp-training-472323/gcpdevops:latest",
+        ".",
+      ]
 
   - name: gcr.io/cloud-builders/docker
-    args: ["push", "gcr.io/gcp-devops-project/gcpdevops:latest"]
+    args: ["push", "gcr.io/kodekloud-gcp-training-472323/gcpdevops:latest"]
 
   - name: gcr.io/cloud-builders/gke-deploy
     args:
       - run
       - --filename=gke.yaml
-      - --image=gcr.io/gcp-devops-project/gcpdevops:latest
+      - --image=gcr.io/kodekloud-gcp-training-472323/gcpdevops:latest
       - --location=us-central1-a
       - --cluster=gcp-devops-project
+      - --project=kodekloud-gcp-training-472323
 
 options:
   logging: CLOUD_LOGGING_ONLY
