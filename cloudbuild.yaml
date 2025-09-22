@@ -12,7 +12,6 @@ steps:
   - --image=gcr.io/$PROJECT_ID/gcpdevops
   - --location=us-central1-a    # make sure this matches your cluster’s zone/region
   - --cluster=gke-gcp-devops
-
+  
 options:
   logging: CLOUD_LOGGING_ONLY
-
