@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: gcp-devops-gke
-          image: gcr.io/kodekloud-gcp-training-472323/gcpdevops:latest
+          image: gcr.io/kodekloud-gcp-training-472323/gcpdevops-dev:latest
           ports:
             - containerPort: 5000
           env:
@@ -28,8 +28,6 @@ kind: Service
 metadata:
   name: gcp-devops-gke-service
   namespace: gcp-devops-dev
-  labels:
-    app.kubernetes.io/managed-by: "gcp-cloud-build-deploy"
 spec:
   type: LoadBalancer
   selector:
