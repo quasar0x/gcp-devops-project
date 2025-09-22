@@ -8,9 +8,9 @@ steps:
 - name: gcr.io/cloud-builders/gke-deploy
   args:
   - run
-  - --filename=k8s.yaml         # <— we'll point to a single file with all resources
+  - --filename=gke.yaml
   - --image=gcr.io/$PROJECT_ID/gcpdevops
-  - --location=us-central1-a    # make sure this matches your cluster’s zone/region
+  - --location=us-central1-a
   - --cluster=gke-gcp-devops
   
 options:
