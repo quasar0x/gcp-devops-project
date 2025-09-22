@@ -1,23 +1,17 @@
-substitutions:
-  _CLUSTER_NAME: gcp-devops-project
-  _CLUSTER_LOCATION: us-central1-a
-  _CLUSTER_PROJECT: gcp-devops-project
-
 steps:
   - name: gcr.io/cloud-builders/docker
-    args: ["build", "-t", "gcr.io/$PROJECT_ID/gcpdevops:$SHORT_SHA", "."]
+    args: ["build", "-t", "gcr.io/gcp-devops-project/gcpdevops:latest", "."]
 
   - name: gcr.io/cloud-builders/docker
-    args: ["push", "gcr.io/$PROJECT_ID/gcpdevops:$SHORT_SHA"]
+    args: ["push", "gcr.io/gcp-devops-project/gcpdevops:latest"]
 
   - name: gcr.io/cloud-builders/gke-deploy
     args:
       - run
       - --filename=gke.yaml
-      - --image=gcr.io/$PROJECT_ID/gcpdevops:$SHORT_SHA
-      - --location=$_CLUSTER_LOCATION
-      - --cluster=$_CLUSTER_NAME
-      - --project=$_CLUSTER_PROJECT
+      - --image=gcr.io/gcp-devops-project/gcpdevops:latest
+      - --location=us-central1-a
+      - --cluster=gcp-devops-project
 
 options:
   logging: CLOUD_LOGGING_ONLY
