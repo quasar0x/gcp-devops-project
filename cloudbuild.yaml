@@ -1,19 +1,17 @@
-# cloudbuild.yaml  (exact file name)
 steps:
-# build the container image
 - name: gcr.io/cloud-builders/docker
   args: ["build", "-t", "gcr.io/$PROJECT_ID/gcpdevops", "."]
-  # push container image
-- name: "gcr.io/cloud-builders/docker"
+
+- name: gcr.io/cloud-builders/docker
   args: ["push", "gcr.io/$PROJECT_ID/gcpdevops"]
-  # deploy container image to GKE
-- name: "gcr.io/cloud-builders/gke-deploy"
+
+- name: gcr.io/cloud-builders/gke-deploy
   args:
   - run
-  - --filename=gke.yaml
+  - --filename=k8s.yaml         # <— we'll point to a single file with all resources
   - --image=gcr.io/$PROJECT_ID/gcpdevops
-  - --location=us-central1-a
+  - --location=us-central1-a    # make sure this matches your cluster’s zone/region
   - --cluster=gke-gcp-devops
-  - --namespace=gcp-devops-prod
+  
 options:
   logging: CLOUD_LOGGING_ONLY
